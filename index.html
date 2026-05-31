@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Telegram Mini App</title>
+    <!-- Telegram Web App SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!-- Adsgram SDK -->
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #17212b;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #2481cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:active {
+            background-color: #1c6199;
+        }
+    </style>
+</head>
+<body>
+    <h1>স্বাগতম আমার মিনি অ্যাপে!</h1>
+    <p>নিচের বাটনে ক্লিক করে অ্যাড দেখুন এবং পয়েন্ট আর্ন করুন।</p>
+    
+    <button id="showAdBtn">বিজ্ঞপ্তি দেখুন</button>
+
+    <script>
+        // Telegram WebApp ইনিশিয়ালাইজ করা
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand(); // অ্যাপটি পুরো স্ক্রিনে খোলার জন্য
+
+        // Adsgram AdController সেটআপ করা
+        // 'YOUR_BLOCK_ID' এর জায়গায় পরবর্তীতে আপনার Adsgram-এর Block ID বসাবেন
+        const AdController = window.Adsgram.init({ blockId: "YOUR_BLOCK_ID" });
+
+        document.getElementById('showAdBtn').addEventListener('click', () => {
+            AdController.show()
+                .then((result) => {
+                    // ব্যবহারকারী সম্পূর্ণ অ্যাড দেখলে এই কোড রান হবে
+                    alert("ধন্যবাদ! আপনি সম্পূর্ণ অ্যাড দেখেছেন।");
+                })
+                .catch((error) => {
+                    // অ্যাড দেখতে সমস্যা হলে বা কেটে দিলে এই কোড রান হবে
+                    console.error("Ad error:", error);
+                    alert("অ্যাড লোড হতে সমস্যা হয়েছে বা আপনি মাঝপথে কেটে দিয়েছেন।");
+                });
+        });
+    </script>
+</body>
+</html>
