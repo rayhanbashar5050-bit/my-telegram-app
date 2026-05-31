@@ -52,7 +52,6 @@
         // Adsgram AdController সেটআপ করা
         // 'YOUR_BLOCK_ID' এর জায়গায় পরবর্তীতে আপনার Adsgram-এর Block ID বসাবেন
         const AdController = window.Adsgram.init({ blockId: "33655" });
-
         document.getElementById('showAdBtn').addEventListener('click', () => {
             AdController.show()
                 .then((result) => {
